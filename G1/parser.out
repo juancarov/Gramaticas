@@ -1,0 +1,218 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> lineas
+Rule 1     lineas -> lineas linea
+Rule 2     lineas -> linea
+Rule 3     linea -> capicua SALTO_LINEA
+Rule 4     linea -> error SALTO_LINEA
+Rule 5     capicua -> <empty>
+Rule 6     capicua -> CERO
+Rule 7     capicua -> UNO
+Rule 8     capicua -> CERO capicua CERO
+Rule 9     capicua -> UNO capicua UNO
+
+Terminals, with rules where they appear
+
+CERO                 : 6 8 8
+SALTO_LINEA          : 3 4
+UNO                  : 7 9 9
+error                : 4
+
+Nonterminals, with rules where they appear
+
+capicua              : 3 8 9
+linea                : 1 2
+lineas               : 1 0
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . lineas
+    (1) lineas -> . lineas linea
+    (2) lineas -> . linea
+    (3) linea -> . capicua SALTO_LINEA
+    (4) linea -> . error SALTO_LINEA
+    (5) capicua -> .
+    (6) capicua -> . CERO
+    (7) capicua -> . UNO
+    (8) capicua -> . CERO capicua CERO
+    (9) capicua -> . UNO capicua UNO
+
+    error           shift and go to state 4
+    SALTO_LINEA     reduce using rule 5 (capicua -> .)
+    CERO            shift and go to state 5
+    UNO             shift and go to state 6
+
+    lineas                         shift and go to state 1
+    linea                          shift and go to state 2
+    capicua                        shift and go to state 3
+
+state 1
+
+    (0) S' -> lineas .
+    (1) lineas -> lineas . linea
+    (3) linea -> . capicua SALTO_LINEA
+    (4) linea -> . error SALTO_LINEA
+    (5) capicua -> .
+    (6) capicua -> . CERO
+    (7) capicua -> . UNO
+    (8) capicua -> . CERO capicua CERO
+    (9) capicua -> . UNO capicua UNO
+
+    error           shift and go to state 4
+    SALTO_LINEA     reduce using rule 5 (capicua -> .)
+    CERO            shift and go to state 5
+    UNO             shift and go to state 6
+
+    linea                          shift and go to state 7
+    capicua                        shift and go to state 3
+
+state 2
+
+    (2) lineas -> linea .
+
+    error           reduce using rule 2 (lineas -> linea .)
+    CERO            reduce using rule 2 (lineas -> linea .)
+    UNO             reduce using rule 2 (lineas -> linea .)
+    $end            reduce using rule 2 (lineas -> linea .)
+    SALTO_LINEA     reduce using rule 2 (lineas -> linea .)
+
+
+state 3
+
+    (3) linea -> capicua . SALTO_LINEA
+
+    SALTO_LINEA     shift and go to state 8
+
+
+state 4
+
+    (4) linea -> error . SALTO_LINEA
+
+    SALTO_LINEA     shift and go to state 9
+
+
+state 5
+
+    (6) capicua -> CERO .
+    (8) capicua -> CERO . capicua CERO
+    (5) capicua -> .
+    (6) capicua -> . CERO
+    (7) capicua -> . UNO
+    (8) capicua -> . CERO capicua CERO
+    (9) capicua -> . UNO capicua UNO
+
+  ! reduce/reduce conflict for CERO resolved using rule 5 (capicua -> .)
+  ! shift/reduce conflict for CERO resolved as shift
+  ! shift/reduce conflict for UNO resolved as shift
+    SALTO_LINEA     reduce using rule 6 (capicua -> CERO .)
+    CERO            shift and go to state 5
+    UNO             shift and go to state 6
+
+  ! CERO            [ reduce using rule 6 (capicua -> CERO .) ]
+  ! UNO             [ reduce using rule 6 (capicua -> CERO .) ]
+  ! CERO            [ reduce using rule 5 (capicua -> .) ]
+
+    capicua                        shift and go to state 10
+
+state 6
+
+    (7) capicua -> UNO .
+    (9) capicua -> UNO . capicua UNO
+    (5) capicua -> .
+    (6) capicua -> . CERO
+    (7) capicua -> . UNO
+    (8) capicua -> . CERO capicua CERO
+    (9) capicua -> . UNO capicua UNO
+
+  ! reduce/reduce conflict for UNO resolved using rule 5 (capicua -> .)
+  ! shift/reduce conflict for CERO resolved as shift
+  ! shift/reduce conflict for UNO resolved as shift
+    SALTO_LINEA     reduce using rule 7 (capicua -> UNO .)
+    CERO            shift and go to state 5
+    UNO             shift and go to state 6
+
+  ! CERO            [ reduce using rule 7 (capicua -> UNO .) ]
+  ! UNO             [ reduce using rule 7 (capicua -> UNO .) ]
+  ! UNO             [ reduce using rule 5 (capicua -> .) ]
+
+    capicua                        shift and go to state 11
+
+state 7
+
+    (1) lineas -> lineas linea .
+
+    error           reduce using rule 1 (lineas -> lineas linea .)
+    CERO            reduce using rule 1 (lineas -> lineas linea .)
+    UNO             reduce using rule 1 (lineas -> lineas linea .)
+    $end            reduce using rule 1 (lineas -> lineas linea .)
+    SALTO_LINEA     reduce using rule 1 (lineas -> lineas linea .)
+
+
+state 8
+
+    (3) linea -> capicua SALTO_LINEA .
+
+    error           reduce using rule 3 (linea -> capicua SALTO_LINEA .)
+    CERO            reduce using rule 3 (linea -> capicua SALTO_LINEA .)
+    UNO             reduce using rule 3 (linea -> capicua SALTO_LINEA .)
+    $end            reduce using rule 3 (linea -> capicua SALTO_LINEA .)
+    SALTO_LINEA     reduce using rule 3 (linea -> capicua SALTO_LINEA .)
+
+
+state 9
+
+    (4) linea -> error SALTO_LINEA .
+
+    error           reduce using rule 4 (linea -> error SALTO_LINEA .)
+    CERO            reduce using rule 4 (linea -> error SALTO_LINEA .)
+    UNO             reduce using rule 4 (linea -> error SALTO_LINEA .)
+    $end            reduce using rule 4 (linea -> error SALTO_LINEA .)
+    SALTO_LINEA     reduce using rule 4 (linea -> error SALTO_LINEA .)
+
+
+state 10
+
+    (8) capicua -> CERO capicua . CERO
+
+    CERO            shift and go to state 12
+
+
+state 11
+
+    (9) capicua -> UNO capicua . UNO
+
+    UNO             shift and go to state 13
+
+
+state 12
+
+    (8) capicua -> CERO capicua CERO .
+
+    SALTO_LINEA     reduce using rule 8 (capicua -> CERO capicua CERO .)
+    CERO            reduce using rule 8 (capicua -> CERO capicua CERO .)
+    UNO             reduce using rule 8 (capicua -> CERO capicua CERO .)
+
+
+state 13
+
+    (9) capicua -> UNO capicua UNO .
+
+    SALTO_LINEA     reduce using rule 9 (capicua -> UNO capicua UNO .)
+    CERO            reduce using rule 9 (capicua -> UNO capicua UNO .)
+    UNO             reduce using rule 9 (capicua -> UNO capicua UNO .)
+
+WARNING: 
+WARNING: Conflicts:
+WARNING: 
+WARNING: shift/reduce conflict for CERO in state 5 resolved as shift
+WARNING: shift/reduce conflict for UNO in state 5 resolved as shift
+WARNING: shift/reduce conflict for CERO in state 6 resolved as shift
+WARNING: shift/reduce conflict for UNO in state 6 resolved as shift
+WARNING: reduce/reduce conflict in state 5 resolved using rule (capicua -> <empty>)
+WARNING: rejected rule (capicua -> CERO) in state 5
+WARNING: reduce/reduce conflict in state 6 resolved using rule (capicua -> <empty>)
+WARNING: rejected rule (capicua -> UNO) in state 6
